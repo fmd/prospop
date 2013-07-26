@@ -23,12 +23,11 @@ from docker import *
 #################
 
 def root(request):
-    if request.user.is_authenticated():
-        if request.user.type == "CANDIDATE":
-            return redirect("/candidate/")
-        elif request.user.type == "CLIENT":
-            return redirect("/client/")
-    return home(request)
+    response = ensure_unauthorized(request)
+    if not response:
+        return home(request)
+    return response
+    
 
 #################
 ### Home Page ###
@@ -149,6 +148,10 @@ def action_new_test(request, onsuccess='/client/tests/', onfail='/test/new/'):
 ### Login View ###
 
 def view_client_login(request):
+    response = ensure_unauthorized(request)
+    if response:
+        return response
+    
     auth = authenticate_type(request.user,"CLIENT")
     context = {
         'authenticated' : auth,
@@ -221,6 +224,10 @@ def candidate(request):
 ### Login View ###
 
 def view_candidate_login(request):
+    response = ensure_unauthorized(request)
+    if response:
+        return response
+    
     auth = authenticate_type(request.user,"CANDIDATE")
     context = {
         'authenticated' : auth,
@@ -302,4 +309,12 @@ def authenticate_type(user, type):
 
     if (user.is_authenticated() and user.type == type):
         return True
+    return False
+
+def ensure_unauthorized(request):
+    if request.user.is_authenticated():
+        if request.user.type == "CANDIDATE":
+            return redirect("/candidate/")
+        elif request.user.type == "CLIENT":
+            return redirect("/client/")
     return False
