@@ -1,0 +1,19 @@
+[24/Jul/2013 22:40:36] DEBUG [prospapp.views:26] Hello logs!
+[24/Jul/2013 22:41:04] ERROR [prospapp.views:213] Something went user!
+[24/Jul/2013 22:42:10] ERROR [prospapp.views:196] Something went user!
+[24/Jul/2013 22:42:17] ERROR [prospapp.views:196] Something went user!
+[24/Jul/2013 22:48:58] DEBUG [prospapp.views:229] Could not log in as candidate: Authentication failed.
+[24/Jul/2013 22:49:04] DEBUG [prospapp.views:229] Could not log in as candidate: Authentication failed.
+[24/Jul/2013 22:50:23] DEBUG [prospapp.views:293] Authenticating user with type CANDIDATE against login type of Candidate and auth status <bound method Account.is_authenticated of <Account: candidate@gmail.com>>
+[24/Jul/2013 22:50:23] DEBUG [prospapp.views:229] Could not log in as candidate: Authentication failed.
+[24/Jul/2013 22:50:23] DEBUG [prospapp.views:293] Authenticating user with type CANDIDATE against login type of Candidate and auth status <bound method Account.is_authenticated of <Account: candidate@gmail.com>>
+[24/Jul/2013 22:50:44] DEBUG [prospapp.views:293] Authenticating user with type CANDIDATE against login type of Candidate and auth status True
+[24/Jul/2013 22:50:44] DEBUG [prospapp.views:229] Could not log in as candidate: Authentication failed.
+[24/Jul/2013 22:50:44] DEBUG [prospapp.views:293] Authenticating user with type CANDIDATE against login type of Candidate and auth status True
+[24/Jul/2013 22:51:26] DEBUG [prospapp.views:293] Authenticating user with type CANDIDATE against login type of CANDIDATE and auth status True
+[24/Jul/2013 22:51:38] DEBUG [prospapp.views:293] Authenticating user with type CANDIDATE against login type of CANDIDATE and auth status True
+[24/Jul/2013 22:54:22] DEBUG [prospapp.views:225] Could not log in as candidate: Authentication failed.
+[26/Jul/2013 09:50:19] DEBUG [prospapp.views:225] Could not log in as candidate: Authentication failed.
+[26/Jul/2013 09:50:31] DEBUG [prospapp.views:225] Could not log in as candidate: Authentication failed.
+[26/Jul/2013 09:50:38] DEBUG [prospapp.views:225] Could not log in as candidate: Authentication failed.
+[26/Jul/2013 09:55:28] DEBUG [prospapp.views:225] Could not log in as candidate: Authentication failed.
