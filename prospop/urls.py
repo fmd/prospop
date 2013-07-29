@@ -16,6 +16,11 @@ urlpatterns = patterns('',
     url(r'^about/$', 'prospapp.views.about'),
     url(r'^pricing/$', 'prospapp.views.pricing'),
 
+    #Frontend - Functional
+    url(r'^tests/$', 'prospapp.views.fe_tests'),
+    url(r'^test/(\d{1,15})/$', 'prospapp.views.fe_test'),
+    url(r'^test/(\d{1,15})/new/action/$','prospapp.views.action_new_test_instance'),
+
     #Client
     url(r'^client/$', 'prospapp.views.client'),
     url(r'^client/login/$', 'prospapp.views.view_client_login'),

@@ -6,7 +6,14 @@
 <div id="content">
     <div class="hero">
         <h1>My CandidateAccount</h1>
-	<p>I am {{ email }}. cool.</p>
+    	<p>I am {{ email }}. cool.</p>
+        <ul>
+            {% for instance in instances %}
+                <li><a href="#">{{ instance.test.label }}</a></li>
+            {% empty %}
+                <li>You haven't started any tests yet! What's WITH you?</li>
+            {% endfor %}
+        </ul>
     </div>
 </div>
 {% endblock %}

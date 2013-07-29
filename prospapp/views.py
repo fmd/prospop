@@ -50,6 +50,48 @@ def about(request):
 def pricing(request):
     return render(request, 'frontend/pricing.html', {})
 
+##############################################
+##### ----- Frontend - Functional ----- ######
+##############################################
+
+####################
+### Browse Tests ###
+####################
+
+def fe_tests(request):
+    context = {
+        'tests' : Test.objects.all()
+    }
+    return render(request, 'frontend/tests.html',context)
+
+###################
+### Single Test ###
+###################
+
+def fe_test(request, id):
+    context = {
+        'test' : Test.objects.get(id=id)
+    }
+    return render(request, 'frontend/test.html',context)
+
+#########################
+### New Test Instance ###
+#########################
+
+def action_new_test_instance(request, id):
+    auth = authenticate_type(request.user,"CANDIDATE")
+    if not auth:
+        return redirect("/candidate/login/")
+
+    test = Test.objects.get(id=id)
+
+    user_has_test = TestInstance.objects.filter(test=test,owner=request.user).exists()
+    if not user_has_test:
+        instance = TestInstance(test=test, owner=request.user)
+        instance.save()
+    
+    return redirect("/test/"+id+"/")
+
 ######################################
 ##### ----- Client Section ----- #####
 ######################################
@@ -214,6 +256,7 @@ def candidate(request):
     context = {
         'authenticated' : auth,
         'email'         : request.user.email,
+        'instances'     : request.user.instances.all(),
     }  
     return render(request, 'candidate/home.html', context)
 

@@ -1,0 +1,16 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}This is the tests{% endblock %}
+
+{% block content %}
+<div class="content">
+    <ul>
+    {% for test in tests %}
+        <li><a href="{% url "prospapp.views.fe_test" test.id %}">{{ test.label }}</a></li>
+    {% empty %}
+        <li>No tests available to the public.</li>
+    {% endfor %}
+    </ul>
+    <h2>Cool this is all the tests</h2>
+</div>
+{% endblock %}
