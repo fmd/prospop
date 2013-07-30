@@ -6,7 +6,7 @@
 <div class="content">
     <ul>
     {% for test in tests %}
-        <li><a href="{% url "prospapp.views.fe_test" test.id %}">{{ test.label }}</a></li>
+        <li><a href="{% url "prospapp.views.frontend.test" test.id %}">{{ test.label }}</a></li>
     {% empty %}
         <li>No tests available to the public.</li>
     {% endfor %}
