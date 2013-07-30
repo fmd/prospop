@@ -17,12 +17,20 @@ ACCOUNT_TYPES = (
     ('ADMIN',     'Admin'),
 )
 
+TESTINSTANCE_STATUSES = (
+    ('PENDING',   'Pending'),    #User has not started the Test.
+    ('ACTIVE',    'Active'),     #User has started the Test.
+    ('PROCESSING','Processing'), #User has finished the Test and it is being processed.
+    ('COMPLETE',  'Complete'),   #Test is ready for Client inspection.
+    ('CANCELLED', 'Cancelled'),  #User has cancelled the Test.
+)
+
 ############################
 ### User class extension ###
 ############################
 
 class Account(AbstractUser):
-    type = models.CharField(choices=ACCOUNT_TYPES, max_length=31, default=ACCOUNT_TYPES[0])
+    type = models.CharField(choices=ACCOUNT_TYPES, max_length=31, default="CANDIDATE")
 
 ########################################
 ### Base model class with CRUD data. ###
@@ -88,8 +96,8 @@ post_save.connect(clone_instructions, sender=Test)
 ####################################################################
 
 class TestInstance(BaseModel):
-    test  = models.ForeignKey(Test, related_name="instances", parent_link=True)
-    owner = models.ForeignKey(Account, related_name="instances", parent_link=True)
-
+    test   = models.ForeignKey(Test, related_name="instances", parent_link=True)
+    owner  = models.ForeignKey(Account, related_name="instances", parent_link=True)
+    status = models.CharField(choices=TESTINSTANCE_STATUSES,max_length=31,default="PENDING") 
 
 
