@@ -2,6 +2,8 @@
 ##### ----- Client Section ----- #####
 ######################################
 
+### Imports ###
+
 from helpers import *
 
 ### Client Account Page ###
