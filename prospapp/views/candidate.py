@@ -2,13 +2,17 @@
 ##### ----- Candidate Section ----- #####
 #########################################
 
-### Imports ###
+# Django Imports
+from django.shortcuts import render, redirect
+from django.core.context_processors import csrf
 
+# Our Imports
+from prospapp.models import *
 from helpers import *
 
 ### Candidate Account View ###
 
-def candidate(request):
+def home(request):
     auth = authenticate_type(request.user,"CANDIDATE")
     if not auth:
 
@@ -16,6 +20,7 @@ def candidate(request):
         # Error message: You must be logged in to continue.
 
         return redirect("/candidate/login/")
+
     context = {
         'authenticated' : auth,
         'email'         : request.user.email,
@@ -25,7 +30,7 @@ def candidate(request):
 
 ### Candidate Login View ###
 
-def view_candidate_login(request):
+def login(request):
     response = ensure_unauthorized(request)
     if response:
 
@@ -43,7 +48,7 @@ def view_candidate_login(request):
 
 ### Candidate Login Action ###
 
-def action_candidate_login(request, onsuccess='/candidate/', onfail='/candidate/login/'):
+def do_login(request, onsuccess='/candidate/', onfail='/candidate/login/'):
     user = authenticate(username=request.POST['email'], password=request.POST['password'])
     auth = authenticate_type(user,"CANDIDATE")
     if not auth:
@@ -65,7 +70,7 @@ def action_candidate_login(request, onsuccess='/candidate/', onfail='/candidate/
 
 ### Candidate Signup View ###
 
-def view_candidate_signup(request):
+def signup(request):
     auth = authenticate_type(request.user,"CANDIDATE")
     context = {
         'authenticated' : auth,
@@ -75,7 +80,7 @@ def view_candidate_signup(request):
 
 ### Candidate Signup Action ###
 
-def action_candidate_signup(request, onsuccess='/candidate/login/', onfail='/candidate/signup/'):
+def create_user(request, onsuccess='/candidate/login/', onfail='/candidate/signup/'):
     post = request.POST
 
     # TODO

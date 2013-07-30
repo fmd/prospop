@@ -2,8 +2,11 @@
 ##### ----- Frontend ----- #####
 ################################
 
-### Imports ###
+# Django Imports
+from django.shortcuts import render, redirect
 
+# Our Imports
+from prospapp.models import *
 from helpers import *
 
 #########################
@@ -16,8 +19,9 @@ def root(request):
     response = ensure_unauthorized(request)
     if not response:
         return home(request)
+
     return response
-    
+
 ### Home Page ###
 
 def home(request):
@@ -39,7 +43,7 @@ def pricing(request):
 
 ### Browse Tests ###
 
-def fe_tests(request):
+def tests(request):
     context = {
         'tests' : Test.objects.all()
     }
@@ -47,7 +51,7 @@ def fe_tests(request):
 
 ### Single Test ###
 
-def fe_test(request, id):
+def test(request, id):
     context = {
         'test' : Test.objects.get(id=id)
     }
@@ -55,7 +59,7 @@ def fe_test(request, id):
 
 ### New Test Instance ###
 
-def action_new_test_instance(request, id):
+def create_test(request, id):
 
     if not request.user.is_authenticated():
 
@@ -64,6 +68,7 @@ def action_new_test_instance(request, id):
         # Redirect the candidate back to the test page after login via session variable.
 
         return redirect("/candidate/login/")
+
     if not request.user.type == "CANDIDATE":
 
         # TODO
@@ -72,8 +77,8 @@ def action_new_test_instance(request, id):
         return redirect("/test/"+id+"/")
 
     test = Test.objects.get(id=id)
-
     user_has_test = TestInstance.objects.filter(test=test,owner=request.user).exists()
+
     if not user_has_test:
         instance = TestInstance(test=test, owner=request.user)
         instance.save()
@@ -81,6 +86,7 @@ def action_new_test_instance(request, id):
 
         # TODO
         # Redirect to the currently open test
+
         pass
     
     return redirect("/test/"+id+"/")

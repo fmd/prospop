@@ -1,15 +1,12 @@
-### Django Imports ###
-from django.core.context_processors import csrf
-from django.shortcuts import render_to_response, redirect, render
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.template import Template, Context
-from django.http import HttpResponse
+#Set up logging
+#import logging
+#logger = logging.getLogger(__name__)
 
-import logging
-logger = logging.getLogger(__name__)
-
-### Our Imports ###
+# Our Imports
 from prospapp.models import *
-from docker import *
+
+# Package level Imports
+from helpers import *
+from candidate import *
+from client import *
+from frontend import *

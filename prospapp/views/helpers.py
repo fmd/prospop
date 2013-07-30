@@ -1,8 +1,15 @@
-####################################
-##### ----- View Helpers ----- #####
-####################################
+###############################
+##### ----- Helpers ----- #####
+###############################
 
-def action_logout(request):
+# Django Imports 
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+# Our Imports
+from prospapp.models import *
+
+def do_logout(request):
     logout(request)
     return redirect('/')
 

@@ -2,13 +2,16 @@
 ##### ----- Client Section ----- #####
 ######################################
 
-### Imports ###
+# Django Imports
+from django.shortcuts import render, redirect
 
+# Our Imports
+from prospapp.models import *
 from helpers import *
 
 ### Client Account Page ###
 
-def client(request):
+def home(request):
     auth = authenticate_type(request.user,"CLIENT")
     if not auth:
 
@@ -63,7 +66,7 @@ def tests(request):
 
 ### Client New Test Page ###
 
-def view_new_test(request):
+def new_test(request):
     auth = authenticate_type(request.user,"CLIENT")
     if not auth:
 
@@ -81,7 +84,7 @@ def view_new_test(request):
 
 ### Client New Test Action ###
 
-def action_new_test(request, onsuccess='/client/tests/', onfail='/test/new/'):
+def create_test(request, onsuccess='/client/tests/', onfail='/test/new/'):
     post = request.POST
 
     label = post['label']
@@ -97,7 +100,7 @@ def action_new_test(request, onsuccess='/client/tests/', onfail='/test/new/'):
 
 ### Client Login View ###
 
-def view_client_login(request):
+def login(request):
     response = ensure_unauthorized(request)
     if response:
         return response
@@ -111,7 +114,7 @@ def view_client_login(request):
 
 ### Client Login Action ###
 
-def action_client_login(request, onsuccess='/client/', onfail='/client/login/'):
+def do_login(request, onsuccess='/client/', onfail='/client/login/'):
     user = authenticate(username=request.POST['email'], password=request.POST['password'])
     auth = authenticate_type(user,"CLIENT")
     if not auth:
@@ -129,7 +132,7 @@ def action_client_login(request, onsuccess='/client/', onfail='/client/login/'):
 
 ### Client Signup View ###
 
-def view_client_signup(request):
+def signup(request):
     auth = authenticate_type(request.user,"CLIENT")
     context = {
         'authenticated' : auth,
@@ -139,7 +142,7 @@ def view_client_signup(request):
 
 ### Client Signup Action ###
 
-def action_client_signup(request, onsuccess='/client/login/', onfail='/client/signup/'):
+def create_user(request, onsuccess='/client/login/', onfail='/client/signup/'):
     post = request.POST
 
     # TODO
