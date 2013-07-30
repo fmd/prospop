@@ -1,56 +1,74 @@
+# Imports
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+
+#Prospapp imports
+import prospapp.views
 
 # Use the admin backend
 admin.autodiscover()
 
 # Custom 404 handler
 handler404 = 'prospop.views.show_404'
+
+# Custom 500 handler
 handler500 = 'prospop.views.show_500'
 
-urlpatterns = patterns('',
+urlpatterns = patterns('prospapp.views.frontend',
     
     #Frontend
-    url(r'^$', 'prospapp.views.root'),
-    url(r'^home/$', 'prospapp.views.home'),
-    url(r'^about/$', 'prospapp.views.about'),
-    url(r'^pricing/$', 'prospapp.views.pricing'),
+    url(r'^$',         'root'),
+    url(r'^home/$',    'home'),
+    url(r'^about/$',   'about'),
+    url(r'^pricing/$', 'pricing'),
 
     #Frontend - Functional
-    url(r'^tests/$', 'prospapp.views.fe_tests'),
-    url(r'^test/(\d{1,15})/$', 'prospapp.views.fe_test'),
-    url(r'^test/(\d{1,15})/new/action/$','prospapp.views.action_new_test_instance'),
+    url(r'^tests/$',                      'tests'),
+    url(r'^test/(\d{1,15})/$',            'test'),
+    url(r'^test/(\d{1,15})/create/$',     'create_test'),
+)
+
+urlpatterns += patterns('prospapp.views.client',
 
     #Client
-    url(r'^client/$', 'prospapp.views.client'),
-    url(r'^client/login/$', 'prospapp.views.view_client_login'),
-    url(r'^client/signup/$', 'prospapp.views.view_client_signup'),
-    url(r'^client/login_auth/$', 'prospapp.views.action_client_login'),
-    url(r'^client/signup_auth/$', 'prospapp.views.action_client_signup'),
-    
-    #Tests
-    url(r'^client/tests/$', 'prospapp.views.tests'),
-    url(r'^client/test/(\d{1,15})/$', 'prospapp.views.test'),
-    url(r'^client/test/new/$','prospapp.views.view_new_test'),
-    url(r'^client/test/new/action/$','prospapp.views.action_new_test'),
+    url(r'^client/$',               'home'),
+    url(r'^client/login/$',         'login'),
+    url(r'^client/signup/$',        'signup'),
+    url(r'^client/do/login/$',      'do_login'),
+    url(r'^client/create/$',        'create_user'),
+
+    #Client - Tests
+    url(r'^client/tests/$',           'tests'),
+    url(r'^client/test/(\d{1,15})/$', 'test'),
+    url(r'^client/test/new/$',        'new_test'),
+    url(r'^client/test/create/$',     'create_test'),
+
+)
+
+urlpatterns += patterns('prospapp.views.candidate',
 
     #Candidate
-    url(r'^candidate/$', 'prospapp.views.candidate'),
-    url(r'^candidate/login/$', 'prospapp.views.view_candidate_login'),
-    url(r'^candidate/signup/$', 'prospapp.views.view_candidate_signup'),
-    url(r'^candidate/login_auth/$', 'prospapp.views.action_candidate_login'),
-    url(r'^candidate/signup_auth/$', 'prospapp.views.action_candidate_signup'),
+    url(r'^candidate/$',             'home'),
+    url(r'^candidate/login/$',       'login'),
+    url(r'^candidate/signup/$',      'signup'),
+    url(r'^candidate/do/login/$',    'do_login'),
+    url(r'^candidate/create/$',      'create_user'),
+
+)
+
+urlpatterns += patterns('prospapp.views.helpers',
 
     #Shared
-    url(r'^client/logout/$', 'prospapp.views.action_logout'),
+    url(r'^logout/$', 'do_logout'),
+
+)
+
+urlpatterns += patterns('',
 
     #Admin
     url(r'^admin/', include(admin.site.urls)),
 )
 
-#Extra patterns to add:
-#sign up
-#log in
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns += staticfiles_urlpatterns()
