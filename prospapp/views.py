@@ -79,9 +79,19 @@ def fe_test(request, id):
 #########################
 
 def action_new_test_instance(request, id):
+
     if not request.user.is_authenticated():
+
+        # TODO
+        # Error message: You must be logged in to start this test.
+        # Redirect the candidate back to the test page after login via session variable.
+
         return redirect("/candidate/login/")
     if not request.user.type == "CANDIDATE":
+
+        # TODO
+        # Error message: Clients cannot attempt tests.
+
         return redirect("/test/"+id+"/")
 
     test = Test.objects.get(id=id)
@@ -90,6 +100,11 @@ def action_new_test_instance(request, id):
     if not user_has_test:
         instance = TestInstance(test=test, owner=request.user)
         instance.save()
+    else:
+
+        # TODO
+        # Redirect to the currently open test
+        pass
     
     return redirect("/test/"+id+"/")
 
@@ -106,6 +121,10 @@ def action_new_test_instance(request, id):
 def client(request):
     auth = authenticate_type(request.user,"CLIENT")
     if not auth:
+
+        # TODO
+        # Error message: You must be logged in to continue.
+
         return redirect("/client/login/")
 
     context = {
@@ -121,6 +140,10 @@ def client(request):
 def test(request, id):
     auth = authenticate_type(request.user,"CLIENT")
     if not auth:
+
+        # TODO
+        # Error message: You must be logged in to continue.
+
         return redirect("/client/login/")
 
     test = request.user.tests.get(id=id)
@@ -139,6 +162,10 @@ def test(request, id):
 def tests(request):
     auth = authenticate_type(request.user,"CLIENT")
     if not auth:
+
+        # TODO
+        # Error message: You must be logged in to continue.
+
         return redirect("/client/login/")
 
     images = request.user.tests.all()
@@ -159,6 +186,10 @@ def tests(request):
 def view_new_test(request):
     auth = authenticate_type(request.user,"CLIENT")
     if not auth:
+
+        # TODO
+        # Error message: You must be logged in to continue.
+
         return redirect("/client/login/")
 
     images = TestImage.objects.all()
@@ -208,6 +239,10 @@ def action_client_login(request, onsuccess='/client/', onfail='/client/login/'):
     user = authenticate(username=request.POST['email'], password=request.POST['password'])
     auth = authenticate_type(user,"CLIENT")
     if not auth:
+
+        # TODO
+        # Error message: Invalid username or password.
+
         return redirect("/client/login/")
 
     if user is not None:
@@ -253,6 +288,10 @@ def action_client_signup(request, onsuccess='/client/login/', onfail='/client/si
 def candidate(request):
     auth = authenticate_type(request.user,"CANDIDATE")
     if not auth:
+
+        # TODO
+        # Error message: You must be logged in to continue.
+
         return redirect("/candidate/login/")
     context = {
         'authenticated' : auth,
@@ -270,6 +309,10 @@ def candidate(request):
 def view_candidate_login(request):
     response = ensure_unauthorized(request)
     if response:
+
+        # TODO
+        # Error message: You must be logged in to continue.
+
         return response
     
     auth = authenticate_type(request.user,"CANDIDATE")
@@ -285,12 +328,20 @@ def action_candidate_login(request, onsuccess='/candidate/', onfail='/candidate/
     user = authenticate(username=request.POST['email'], password=request.POST['password'])
     auth = authenticate_type(user,"CANDIDATE")
     if not auth:
+
+        # TODO
+        # Error message: Invalid username or password,
+
         return redirect("/candidate/login/")
 
     if user is not None:
         login(request, user)
         return redirect(onsuccess)
     else:
+
+        # TODO
+        # Error message: This is not an active user.
+
         return redirect(onfail) 
 
 ##########################
@@ -319,6 +370,10 @@ def action_candidate_signup(request, onsuccess='/candidate/login/', onfail='/can
         user = create_user(username=post['email'], email=post['email'], password=post['password'], type="CANDIDATE")
         return redirect(onsuccess)
     else:
+
+        # TODO
+        # Error message: A user with this email address already exists.
+
         return redirect(onfail)
 
 #######################################################
