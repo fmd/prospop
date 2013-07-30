@@ -79,9 +79,10 @@ def fe_test(request, id):
 #########################
 
 def action_new_test_instance(request, id):
-    auth = authenticate_type(request.user,"CANDIDATE")
-    if not auth:
+    if not request.user.is_authenticated():
         return redirect("/candidate/login/")
+    if not request.user.type == "CANDIDATE":
+        return redirect("/test/"+id+"/")
 
     test = Test.objects.get(id=id)
 
