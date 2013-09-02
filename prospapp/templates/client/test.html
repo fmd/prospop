@@ -1,8 +1,10 @@
 {% extends "client/base.html" %}
+{% load test %}
+
 {% block title %}Test{% endblock %}
 
 {% block content %}
 <div class="content">
-    This is a Test.
+    {% show_test test %}
 </div>
 {% endblock %}
