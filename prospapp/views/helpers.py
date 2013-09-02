@@ -9,6 +9,7 @@ from django.shortcuts import redirect
 # Our Imports
 from prospapp.models import *
 
+# Auth helpers
 def do_logout(request):
     logout(request)
     return redirect('/')
@@ -42,6 +43,7 @@ def ensure_unauthorized(request):
             return redirect("/client/")
     return False
 
+# Test Helpers
 def authenticate_test(user, test):
     if test.is_public:
         return True

@@ -170,10 +170,13 @@ def do_signup(request, onsuccess='/client/login/', onfail='/client/signup/'):
     post = request.POST
 
     # TODO
-    # Validate client signup
+    # Validate candidate signup
+
+    if post['password1'] != post['password2']:
+        return redirect(onfail)
 
     if not user_exists(post['email']): 
-        user = create_user(username=post['email'], email=post['email'], password=post['password'], type="CLIENT")
+        user = create_user(username=post['email'], email=post['email'], password=post['password1'], type="CLIENT")
         return redirect(onsuccess)
     else:
         return redirect(onfail)

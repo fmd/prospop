@@ -88,8 +88,11 @@ def do_signup(request, onsuccess='/candidate/login/', onfail='/candidate/signup/
     # TODO
     # Validate candidate signup
 
+    if post['password1'] != post['password2']:
+        return redirect(onfail)
+
     if not user_exists(post['email']): 
-        user = create_user(username=post['email'], email=post['email'], password=post['password'], type="CANDIDATE")
+        user = create_user(username=post['email'], email=post['email'], password=post['password1'], type="CANDIDATE")
         return redirect(onsuccess)
     else:
 
