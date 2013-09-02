@@ -81,11 +81,13 @@ class TestImage(BaseImage):
 class Test(BaseModel):
     label        = models.CharField(max_length=31)
     image        = models.ForeignKey(TestImage, related_name="tests", parent_link=True) 
+    is_public    = models.BooleanField(default=True)
     owner        = models.ForeignKey(Account, related_name="tests", parent_link=True)
     instructions = models.TextField(default="")
 
 def clone_instructions(sender, instance, created, **kwargs):  
-    if created:  
+    if created:
+        instance.is_public = instance.image.is_public
         instance.instructions = instance.image.instructions
         instance.save()
 
