@@ -34,8 +34,6 @@ urlpatterns += patterns('prospapp.views.client',
     url(r'^client/$',           'home'),
     url(r'^client/login/$',     'login'),
     url(r'^client/signup/$',    'signup'),
-    url(r'^client/do/login/$',  'do_login'),
-    url(r'^client/do/signup/$', 'do_signup'),
 
     #Client - Tests
     url(r'^client/tests/$',           'tests'),
@@ -51,15 +49,15 @@ urlpatterns += patterns('prospapp.views.candidate',
     url(r'^candidate/$',           'home'),
     url(r'^candidate/login/$',     'login'),
     url(r'^candidate/signup/$',    'signup'),
-    url(r'^candidate/do/login/$',  'do_login'),
-    url(r'^candidate/do/signup/$', 'do_signup'),
 
 )
 
 urlpatterns += patterns('prospapp.views.helpers',
 
     #Shared
-    url(r'^logout/$', 'do_logout'),
+    url(r'^do/logout/$', 'do_logout'),
+    url(r'^do/login/$',  'do_login'),
+    url(r'^do/signup/$', 'do_signup'),
 
 )
 

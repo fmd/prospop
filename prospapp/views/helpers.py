@@ -3,13 +3,53 @@
 ###############################
 
 # Django Imports 
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
+
 from django.shortcuts import redirect
 
 # Our Imports
 from prospapp.models import *
+from prospapp.forms import *
 
 # Auth helpers
+def do_login(request):
+    post = request.POST
+    form = LoginForm(post)
+    user_type = post['user_type']
+    on_success = '/'+user_type+'/login/'
+    on_fail = '/'+user_type+'/'
+
+    user = authenticate(username=post['email'], password=post['password'])
+    auth = authenticate_type(user,user_type.upper())
+    if not auth:
+
+        # TODO
+        # Error message: Invalid username or password.
+
+        return redirect(on_fail)
+
+    if user is not None:
+        login(request, user)
+        return redirect(on_success)
+    else:
+        return redirect(on_fail)
+
+def do_signup(request):
+    post = request.POST
+    form = SignupForm(post)
+
+    # TODO
+    # Validate candidate signup
+
+    if post['password1'] != post['password2']:
+        return redirect(onfail)
+
+    if not user_exists(post['email']): 
+        user = create_user(username=post['email'], email=post['email'], password=post['password1'], type="CLIENT")
+        return redirect(onsuccess)
+    else:
+        return redirect(onfail)
+
 def do_logout(request):
     logout(request)
     return redirect('/')
