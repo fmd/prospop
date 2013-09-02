@@ -23,19 +23,19 @@ urlpatterns = patterns('prospapp.views.frontend',
     url(r'^pricing/$', 'pricing'),
 
     #Frontend - Functional
-    url(r'^tests/$',                      'tests'),
-    url(r'^test/(\d{1,15})/$',            'test'),
-    url(r'^test/(\d{1,15})/create/$',     'create_test'),
+    url(r'^tests/$',                  'tests'),
+    url(r'^test/(\d{1,15})/$',        'test'),
+    url(r'^test/(\d{1,15})/create/$', 'create_test'),
 )
 
 urlpatterns += patterns('prospapp.views.client',
 
     #Client
-    url(r'^client/$',               'home'),
-    url(r'^client/login/$',         'login'),
-    url(r'^client/signup/$',        'signup'),
-    url(r'^client/do/login/$',      'do_login'),
-    url(r'^client/create/$',        'create_user'),
+    url(r'^client/$',          'home'),
+    url(r'^client/login/$',    'login'),
+    url(r'^client/signup/$',   'signup'),
+    url(r'^client/do/login/$', 'do_login'),
+    url(r'^client/create/$',   'create_user'),
 
     #Client - Tests
     url(r'^client/tests/$',           'tests'),
@@ -48,11 +48,11 @@ urlpatterns += patterns('prospapp.views.client',
 urlpatterns += patterns('prospapp.views.candidate',
 
     #Candidate
-    url(r'^candidate/$',             'home'),
-    url(r'^candidate/login/$',       'login'),
-    url(r'^candidate/signup/$',      'signup'),
-    url(r'^candidate/do/login/$',    'do_login'),
-    url(r'^candidate/create/$',      'create_user'),
+    url(r'^candidate/$',          'home'),
+    url(r'^candidate/login/$',    'login'),
+    url(r'^candidate/signup/$',   'signup'),
+    url(r'^candidate/do/login/$', 'do_login'),
+    url(r'^candidate/create/$',   'create_user'),
 
 )
 

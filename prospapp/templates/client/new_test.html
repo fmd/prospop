@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="content">
-	<form method="POST" action="{% url "prospapp.views.action_new_test" %}"> {% csrf_token %}
+	<form method="POST" action="{% url "prospapp.views.client.create_test" %}"> {% csrf_token %}
 		<label for="label">Name:</label>
 		<input id="label" name="label" type="text" />
 		<label for="image">Image:</label>
