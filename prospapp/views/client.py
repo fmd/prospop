@@ -92,12 +92,18 @@ def create_test(request, onsuccess='/client/tests/', onfail='/test/new/'):
 
     label = post['label']
     image = post['image']
+    
+    is_public = False
+    if 'public' in post:
+        is_public = True
+
+
     owner = request.user
     
     # TODO
     # Validate Test Information
 
-    test = Test(label=label, owner=owner, image=TestImage.objects.get(id=image))
+    test = Test(label=label, owner=owner, is_public=is_public, image=TestImage.objects.get(id=image))
     test.save()
     return redirect(onsuccess)
 

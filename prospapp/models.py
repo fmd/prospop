@@ -22,6 +22,7 @@ TESTINSTANCE_STATUSES = (
     ('ACTIVE',    'Active'),     #User has started the Test.
     ('PROCESSING','Processing'), #User has finished the Test and it is being processed.
     ('COMPLETE',  'Complete'),   #Test is ready for Client inspection.
+    ('FINISHED',  'Finished'),   #Client has closed the test.
     ('CANCELLED', 'Cancelled'),  #User has cancelled the Test.
 )
 
@@ -87,7 +88,6 @@ class Test(BaseModel):
 
 def clone_instructions(sender, instance, created, **kwargs):  
     if created:
-        instance.is_public = instance.image.is_public
         instance.instructions = instance.image.instructions
         instance.save()
 
