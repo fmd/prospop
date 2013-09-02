@@ -6,7 +6,7 @@
 <div class="content">
 	<ul>
 		{% for image in images %}
-		<li><a href="{% url "prospapp.views.test" image.id %}">{{ image.label }}</a></li>
+		<li><a href="{% url "prospapp.views.client.test" image.id %}">{{ image.label }}</a></li>
 		{% empty %}
 			<li>No tests</li>
 		{% endfor %}

@@ -45,7 +45,7 @@ def pricing(request):
 
 def tests(request):
     context = {
-        'tests' : Test.objects.all()
+        'tests' : Test.objects.filter(is_public = True)
     }
     return render(request, 'frontend/tests.html',context)
 
