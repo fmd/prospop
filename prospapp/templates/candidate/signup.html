@@ -9,7 +9,7 @@
         <p>You know you want to.</p>
     </div>
 
-    <form action="{% url "prospapp.views.candidate.create_user" %}" method="POST"> {% csrf_token %}
+    <form action="{% url "prospapp.views.candidate.do_signup" %}" method="POST"> {% csrf_token %}
         <div data-role="fieldcontain">
             <label for="email">Email:</label><input type="email" name="email" id="email" value="" />
         </div>

@@ -1,14 +1,11 @@
 {% extends "frontend/base.html" %}
+{% load test %}
 
 {% block title %}This is a single test{% endblock %}
 
 {% block content %}
 <div class="content">
-    <h3>{{ test.label }}</h3>
-    {{ test.instructions }}
-    <hr>
-    <p>Image: {{ test.image }}</p>
-    <p>Posted by: {{ test.owner }}</p>
+    {% show_test test %}
     <a href="{% url "prospapp.views.frontend.create_test" test.id %}">Start this Test!</a>
 </div>
 {% endblock %}

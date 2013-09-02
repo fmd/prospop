@@ -82,7 +82,7 @@ def signup(request):
 
 ### Candidate Signup Action ###
 
-def create_user(request, onsuccess='/candidate/login/', onfail='/candidate/signup/'):
+def do_signup(request, onsuccess='/candidate/login/', onfail='/candidate/signup/'):
     post = request.POST
 
     # TODO

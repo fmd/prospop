@@ -31,6 +31,7 @@ def authenticate_type(user, type):
 
     if (user.is_authenticated() and user.type == type):
         return True
+        
     return False
 
 def ensure_unauthorized(request):
@@ -39,4 +40,13 @@ def ensure_unauthorized(request):
             return redirect("/candidate/")
         elif request.user.type == "CLIENT":
             return redirect("/client/")
+    return False
+
+def authenticate_test(user, test):
+    if test.is_public:
+        return True
+
+    if test.owner == user:
+        return True
+
     return False

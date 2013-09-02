@@ -40,7 +40,22 @@ def test(request, id):
 
         return redirect("/client/login/")
 
-    test = request.user.tests.get(id=id)
+    test = Test.objects.get(id=id)
+    auth = authenticate_test(request.user, test)
+    if not test:
+
+        # TODO
+        # Error message: No such test.
+
+        return redirect("client/tests/")
+
+    if not auth:
+
+        # TODO
+        # Error message: You do not own this test.
+
+        return redirect("/client/tests/")
+
     context = {
         'authenticated' : auth,
         'test'          : test,
@@ -151,7 +166,7 @@ def signup(request):
 
 ### Client Signup Action ###
 
-def create_user(request, onsuccess='/client/login/', onfail='/client/signup/'):
+def do_signup(request, onsuccess='/client/login/', onfail='/client/signup/'):
     post = request.POST
 
     # TODO
