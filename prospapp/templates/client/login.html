@@ -1,4 +1,4 @@
-{% extends "client/base.html" %}
+{% extends "frontend/base.html" %}
 
 {% block title %}This is the login{% endblock %}
 
@@ -9,7 +9,7 @@
         <p>Yeeeeaaaah.</p>
     </div>
 
-    <form action="{% url "prospapp.views.action_client_login" %}" method="POST"> {% csrf_token %}
+    <form action="{% url "prospapp.views.client.do_login" %}" method="POST"> {% csrf_token %}
         <div data-role="fieldcontain">
             <label for="email">Email:</label><input type="email" name="email" id="email" value="" />
         </div>

@@ -28,6 +28,16 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
+        <div id="header">
+        <ul class="main-nav">
+            <li><a href="{% url "prospapp.views.frontend.home" %}">Home</a></li>
+            <li><a href="{% url "prospapp.views.frontend.about" %}">What we do</a></li>
+            <li><a href="{% url "prospapp.views.frontend.pricing" %}">Pricing</a></li>
+            <li>Employers</li>
+            <li>Employees</li>
+        </ul>
+        <hr>
+        </div>
         {% block content %}{% endblock %}
 
         {% compress js %}
