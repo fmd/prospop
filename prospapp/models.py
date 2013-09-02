@@ -26,6 +26,10 @@ TESTINSTANCE_STATUSES = (
     ('CANCELLED', 'Cancelled'),  #User has cancelled the Test.
 )
 
+##############################
+##### ----- Models ----- #####
+##############################
+
 ############################
 ### User class extension ###
 ############################
@@ -101,5 +105,4 @@ class TestInstance(BaseModel):
     test   = models.ForeignKey(Test, related_name="instances", parent_link=True)
     owner  = models.ForeignKey(Account, related_name="instances", parent_link=True)
     status = models.CharField(choices=TESTINSTANCE_STATUSES,max_length=31,default="PENDING") 
-
 
