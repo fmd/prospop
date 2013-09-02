@@ -5,6 +5,8 @@
 # Django Imports
 from django.shortcuts import render, redirect
 from django.core.context_processors import csrf
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
 
 # Our Imports
 from prospapp.models import *
@@ -126,7 +128,7 @@ def do_login(request, onsuccess='/client/', onfail='/client/login/'):
         return redirect("/client/login/")
 
     if user is not None:
-        login(request, user)
+        auth_login(request, user)
         return redirect(onsuccess)
     else:
         return redirect(onfail)
