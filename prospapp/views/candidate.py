@@ -10,6 +10,7 @@ from django.contrib.auth import login as auth_login
 
 # Our Imports
 from prospapp.models import *
+from prospapp.forms import *
 from helpers import *
 
 ### Candidate Account View ###
@@ -42,8 +43,10 @@ def login(request):
         return response
     
     auth = authenticate_type(request.user,"CANDIDATE")
+    form = LoginForm()
     context = {
         'authenticated' : auth,
+        'form' : form,
     }
     context.update(csrf(request))
     return render(request, 'candidate/login.html',context)

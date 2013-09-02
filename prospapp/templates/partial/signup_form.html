@@ -1,12 +1,4 @@
 <form action="{% url action %}" method="POST"> {% csrf_token %}
-    <div data-role="fieldcontain">
-        <label for="email">Email:</label><input type="email" name="email" id="email" value="" />
-    </div>
-    <div data-role="fieldcontain">
-        <label for="password1">Password:</label><input type="password" name="password1" id="password1" value="" />
-    </div>
-    <div data-role="fieldcontain">
-        <label for="password2">Confirm Password:</label><input type="password" name="password2" id="password2" value="" />
-    </div>
+    {{ form }}
     <button type="submit" name="submit" value="submit-value">Sign up</button>
 </form>
