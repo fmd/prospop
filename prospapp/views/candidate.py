@@ -34,14 +34,17 @@ def home(request):
 def login(request):
     response = ensure_unauthorized(request)
     if response:
-
-        # TODO
-        # Error message: You must be logged in to continue.
-
         return response
     
     auth = authenticate_type(request.user,'CANDIDATE')
-    form = LoginForm(initial = {'user_type': 'candidate'})
+    
+    if 'login_data' in request.session.keys():
+        form = LoginForm(initial = request.session['login_data'])
+        request.session.pop('login_data')
+        request.session.modified = True
+    else:
+        form = LoginForm(initial = {'user_type': 'candidate'})    
+
     context = {
         'authenticated' : auth,
         'form' : form,

@@ -63,6 +63,7 @@ def test(request, id):
     if 'new_test_auth_data' in request.session.keys():
         form = NewTestAuthForm(initial = request.session['new_test_auth_data'])
         request.session.pop('new_test_auth_data')
+        request.session.modified = True
     else:
         form = NewTestAuthForm(initial = {'test' : test.id})
 
@@ -109,6 +110,7 @@ def new_test(request):
     if 'new_test_data' in request.session.keys():
         form = NewTestForm(initial = request.session['new_test_data'])
         request.session.pop('new_test_data')
+        request.session.modified = True
     else:
         form = NewTestForm(initial = {'public': True})
 
@@ -263,7 +265,14 @@ def login(request):
         return response
     
     auth = authenticate_type(request.user,'CLIENT')
-    form = LoginForm(initial = {'user_type': 'client'})
+    
+    
+    if 'login_data' in request.session.keys():
+        form = LoginForm(initial = request.session['login_data'])
+        request.session.pop('login_data')
+        request.session.modified = True
+    else:
+        form = LoginForm(initial = {'user_type': 'client'})    
 
     context = {
         'authenticated' : auth,

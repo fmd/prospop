@@ -21,6 +21,14 @@ def do_login(request):
 
     user = authenticate(username=post['email'], password=post['password'])
     auth = authenticate_type(user,user_type.upper())
+
+    login_data = {}
+    login_data['user_type'] = post['user_type']
+    login_data['email']     = post['email']
+
+    request.session['login_data'] = login_data
+    request.modified = True
+
     if not auth:
 
         # TODO
@@ -28,11 +36,15 @@ def do_login(request):
 
         return redirect(on_fail)
 
-    if user is not None:
-        login(request, user)
-        return redirect(on_success)
-    else:
+    if not user:
         return redirect(on_fail)
+    
+    login(request, user)
+
+    # We no longer need this session data because the request succeeded.
+    request.session.pop('login_data')
+    request.session.modified = False
+    return redirect(on_success)
 
 def do_signup(request):
     post = request.POST
