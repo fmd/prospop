@@ -2,12 +2,12 @@ from django import forms
 from prospapp.models import *
 
 class LoginForm(forms.Form):
-    email = forms.CharField()
+    email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput())
     user_type = forms.CharField(widget=forms.HiddenInput)
 
 class SignupForm(forms.Form):
-    email = forms.CharField()
+    email = forms.EmailField()
     password1 = forms.CharField(widget=forms.PasswordInput())
     password2 = forms.CharField(widget=forms.PasswordInput())
     user_type = forms.CharField(widget=forms.HiddenInput)

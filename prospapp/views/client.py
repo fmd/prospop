@@ -102,24 +102,29 @@ def new_test(request):
 
 ### Client New Test Action ###
 
-def do_new_test(request, onsuccess='/client/tests/', onfail='/test/new/'):
+def do_new_test(request):
+    on_fail='/client/test/new/'
+    auth = authenticate_type(request.user, 'CLIENT')
+    if not auth:
+
+        # TODO
+        # Error message: You must be logged in to continue.
+
+        return redirect(on_fail)
+
     post = request.POST
-
-    label = post['label']
-    image = post['image']
+    form = NewTestForm(post)
     
-    is_public = False
-    if 'public' in post:
-        is_public = True
+    if not form.is_valid():
 
-    owner = request.user
-    
-    # TODO
-    # Validate Test Information
+        # TODO
+        # Message: Reason it wasn't valid.
 
-    test = Test(label=label, owner=owner, is_public=is_public, image=TestImage.objects.get(id=image))
+        return render(on_fail)
+
+    test = Test(label=form.cleaned_data['label'], owner=request.user, is_public=form.cleaned_data['public'], image=form.cleaned_data['image'])
     test.save()
-    return redirect(onsuccess)
+    return redirect('/client/test/'+test.id+'/')
 
 ### Client Login View ###
 
