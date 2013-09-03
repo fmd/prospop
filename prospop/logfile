@@ -54,3 +54,49 @@
 [03/Sep/2013 14:28:25] ERROR [prospapp.views.client:138] You already have a test called s using image leibniz
 [03/Sep/2013 14:28:58] ERROR [prospapp.views.client:138] You already have a test called s using image Leibniz Approximation of Pi
 [03/Sep/2013 14:32:03] ERROR [prospapp.views.client:216] This user already has permission to access this test!
+[03/Sep/2013 14:48:01] ERROR [prospapp.views.client:132] Form is not valid.
+[03/Sep/2013 14:48:41] ERROR [prospapp.views.client:133] Form is not valid.
+[03/Sep/2013 14:48:43] ERROR [prospapp.views.client:133] Form is not valid.
+[03/Sep/2013 14:48:45] ERROR [prospapp.views.client:146] You already have a test called s using image Leibniz Approximation of Pi
+[03/Sep/2013 14:48:47] ERROR [prospapp.views.client:133] Form is not valid.
+[03/Sep/2013 14:50:48] ERROR [prospapp.views.client:133] Form is not valid.
+[03/Sep/2013 14:50:50] ERROR [prospapp.views.client:147] You already have a test called s using image Leibniz Approximation of Pi
+[03/Sep/2013 14:51:24] ERROR [prospapp.views.client:135] Form is not valid.
+[03/Sep/2013 14:51:24] ERROR [prospapp.views.client:103] <django.contrib.sessions.backends.db.SessionStore object at 0x7f54f8045cd0>
+[03/Sep/2013 14:51:33] ERROR [prospapp.views.client:135] Form is not valid.
+[03/Sep/2013 14:51:33] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'image': [u''], u'label': [u's']}>
+[03/Sep/2013 14:52:38] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'image': [u''], u'label': [u's']}>
+[03/Sep/2013 14:52:39] ERROR [prospapp.views.client:135] Form is not valid.
+[03/Sep/2013 14:52:39] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'image': [u''], u'label': [u's']}>
+[03/Sep/2013 14:52:40] ERROR [prospapp.views.client:135] Form is not valid.
+[03/Sep/2013 14:52:40] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'image': [u''], u'label': [u's']}>
+[03/Sep/2013 14:52:42] ERROR [prospapp.views.client:149] You already have a test called s using image Leibniz Approximation of Pi
+[03/Sep/2013 14:52:42] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:52:43] ERROR [prospapp.views.client:149] You already have a test called s using image Leibniz Approximation of Pi
+[03/Sep/2013 14:52:43] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:52:44] ERROR [prospapp.views.client:149] You already have a test called s using image Leibniz Approximation of Pi
+[03/Sep/2013 14:52:44] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:52:45] ERROR [prospapp.views.client:149] You already have a test called s using image Leibniz Approximation of Pi
+[03/Sep/2013 14:52:45] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:52:47] ERROR [prospapp.views.client:149] You already have a test called s using image Leibniz Approximation of Pi
+[03/Sep/2013 14:52:47] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:53:28] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:53:30] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:53:51] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:53:52] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:53:54] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:54:22] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:54:23] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:54:40] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:54:41] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:55:01] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:55:06] ERROR [prospapp.views.client:151] You already have a test called s using image Leibniz Approximation of Pi
+[03/Sep/2013 14:55:06] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:55:22] ERROR [prospapp.views.client:151] You already have a test called s using image Leibniz Approximation of Pi
+[03/Sep/2013 14:55:22] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:55:30] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 14:55:31] ERROR [prospapp.views.client:151] You already have a test called s using image Leibniz Approximation of Pi
+[03/Sep/2013 14:55:31] ERROR [prospapp.views.client:103] <QueryDict: {u'csrfmiddlewaretoken': [u'qvhaeXAr3jlQV2EJI6sBIkW3XkbOEhvb'], u'public': [u'on'], u'image': [u'2'], u'label': [u's']}>
+[03/Sep/2013 15:19:30] ERROR [prospapp.views.client:191] Form was not valid.
+[03/Sep/2013 15:19:38] ERROR [prospapp.views.client:191] Form was not valid.
+[03/Sep/2013 15:19:39] ERROR [prospapp.views.client:191] Form was not valid.

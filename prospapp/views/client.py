@@ -59,7 +59,12 @@ def test(request, id):
 
         return redirect('/client/tests/')
 
-    form = NewTestAuthForm(initial = {'test' : test.id})
+
+    if 'new_test_auth_data' in request.session.keys():
+        form = NewTestAuthForm(initial = request.session['new_test_auth_data'])
+        request.session.pop('new_test_auth_data')
+    else:
+        form = NewTestAuthForm(initial = {'test' : test.id})
 
     context = {
         'authenticated' : auth,
@@ -100,7 +105,12 @@ def new_test(request):
 
         return redirect('/client/login/')
 
-    form = NewTestForm(initial = {'public': True})
+    form = None
+    if 'new_test_data' in request.session.keys():
+        form = NewTestForm(initial = request.session['new_test_data'])
+        request.session.pop('new_test_data')
+    else:
+        form = NewTestForm(initial = {'public': True})
 
     context = {
         'authenticated' : auth,
@@ -112,16 +122,19 @@ def new_test(request):
 
 def do_new_test(request):
     on_fail='/client/test/new/'
+    post = request.POST
+    form = NewTestForm(post)
     auth = authenticate_type(request.user, 'CLIENT')
+
+    # Store the posted form data in the session for next time.
+    request.session['new_test_data'] = post
+    request.session.modified = True
+
     if not auth:
 
         # TODO
         # Error message: You must be logged in to continue.
-
         return redirect('/client/login/')
-
-    post = request.POST
-    form = NewTestForm(post)
     
     if not form.is_valid():
 
@@ -130,16 +143,25 @@ def do_new_test(request):
         logger.error("Form is not valid.")
         return redirect(on_fail)
 
-    test_exists = Test.objects.filter(owner=request.user, label=form.cleaned_data['label'], image=form.cleaned_data['image']).exists()
+    image = form.cleaned_data['image']
+    label = form.cleaned_data['label']
+    is_public = form.cleaned_data['public']
+
+    test_exists = Test.objects.filter(owner=request.user, label=label, image=image).exists()
     if test_exists:
 
         # TODO
         # Message: You already have a test called [label].
-        logger.error('You already have a test called '+form.cleaned_data['label']+' using image '+form.cleaned_data['image'].label)
+        logger.error('You already have a test called '+label+' using image '+image.label)
         return redirect(on_fail)
 
-    test = Test(label=form.cleaned_data['label'], owner=request.user, is_public=form.cleaned_data['public'], image=form.cleaned_data['image'])
+    test = Test(label=label, owner=request.user, is_public=is_public, image=image)
     test.save()
+
+    # It was sucessful, so we don't need the data anymore.
+    request.session.pop('new_test_data')
+    request.session.modified = False
+
     return redirect('/client/test/'+str(test.id)+'/')
 
 ### Client New Test Auth Action ###
@@ -147,6 +169,13 @@ def do_new_test(request):
 def do_new_test_auth(request):
 
     auth = authenticate_type(request.user, 'CLIENT')
+    post = request.POST
+    form = NewTestAuthForm(post)
+
+    # Store the posted form data in the session for next time.
+    request.session['new_test_auth_data'] = post
+    request.session.modified = True
+
     if not auth:
 
         # TODO
@@ -155,8 +184,6 @@ def do_new_test_auth(request):
 
         return redirect('/client/login/')
 
-    post = request.POST
-    form = NewTestAuthForm(post)
     if not form.is_valid():
 
         # TODO
@@ -211,6 +238,7 @@ def do_new_test_auth(request):
 
         authorized_users = test.authorizations.all().values_list('user', flat=True)
         if user.id in authorized_users:
+
             # TODO
             # Message: This user already has permission to access this test!
             logger.error('This user already has permission to access this test!')
@@ -219,6 +247,10 @@ def do_new_test_auth(request):
 
     test_auth = TestAuth.objects.create(test=test, email=email, user=user)
     test.authorizations.add(test_auth)
+
+    # If we're successful, we don't need the session data anymore.
+    request.session.pop('new_test_auth_data')
+    request.session.modified = False
 
     return redirect('/client/test/'+str(test.id)+'/')
 
