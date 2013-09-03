@@ -6,6 +6,10 @@ register = template.Library()
 def show_test(test):
     return {'test': test}
 
-@register.inclusion_tag('partial/test_edit.html')
+@register.inclusion_tag('partial/forms/test_edit.html')
 def edit_test(test):
     return {'test': test}
+
+@register.inclusion_tag('partial/forms/test_auth_edit.html')
+def edit_test_auth(test_auth):
+    return {'test_auth': test_auth}

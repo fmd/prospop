@@ -1,0 +1,4 @@
+<form action="{% url "prospapp.views.helpers.do_signup" %}" method="POST"> {% csrf_token %}
+    {{ form }}
+    <button type="submit" name="submit" value="submit-value">Sign up</button>
+</form>
