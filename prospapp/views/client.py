@@ -2,6 +2,10 @@
 ##### ----- Client Section ----- #####
 ######################################
 
+#Python Imports
+import logging
+logger = logging.getLogger(__name__)
+
 # Django Imports
 from django.shortcuts import render, redirect
 from django.core.context_processors import csrf
@@ -40,7 +44,7 @@ def test(request, id):
         return redirect('/client/login/')
 
     test = Test.objects.get(id=id)
-    auth = authenticate_test(request.user, test)
+    auth = authenticate_test_owner(request.user, test)
     if not test:
 
         # TODO
@@ -55,10 +59,14 @@ def test(request, id):
 
         return redirect('/client/tests/')
 
+    form = NewTestAuthForm(initial = {'test' : test.id})
+
     context = {
         'authenticated' : auth,
         'test'          : test,
+        'auth_form'     : form,
     }
+
     return render(request, 'client/test.html', context)
 
 ### Client Tests Page ###
@@ -110,7 +118,7 @@ def do_new_test(request):
         # TODO
         # Error message: You must be logged in to continue.
 
-        return redirect(on_fail)
+        return redirect('/client/login/')
 
     post = request.POST
     form = NewTestForm(post)
@@ -125,6 +133,87 @@ def do_new_test(request):
     test = Test(label=form.cleaned_data['label'], owner=request.user, is_public=form.cleaned_data['public'], image=form.cleaned_data['image'])
     test.save()
     return redirect('/client/test/'+test.id+'/')
+
+### Client New Test Auth Action ###
+
+def do_new_test_auth(request):
+
+    auth = authenticate_type(request.user, 'CLIENT')
+    if not auth:
+
+        # TODO
+        # Error message: You must be logged in to continue.
+        logger.error("You must be logged in to continue.")
+
+        return redirect('/client/login/')
+
+    post = request.POST
+    form = NewTestAuthForm(post)
+    if not form.is_valid():
+
+        # TODO
+        # Message: Reason it isn't valid.
+        logger.error("Form was not valid.")
+
+        if 'test' in post.keys():
+            test_id = post['test']
+        else:
+            return redirect('/client/tests/')
+
+        if test_id > 0:
+            return redirect('/client/test/'+test_id+'/')
+        else:
+            return redirect('/client/tests/')
+
+    test = Test.objects.get(id=form.cleaned_data['test'])
+    if not test:
+
+        # TODO
+        # Message: No such test exists.
+        logger.error("No such test exists.")
+
+        return redirect('/client/tests/')
+
+    can_edit_test = authenticate_test_owner(request.user, test)
+    if not can_edit_test:
+
+        # TODO
+        # Message: You are not authorized to edit this test.
+        logger.error("You are not authorized to edit this test.")
+
+        return redirect('/client/tests/')
+
+    email = form.cleaned_data['email']
+    if email in test.authorizations.all().values_list('email', flat = True):
+
+            # TODO
+            # Message: This user already has permission to access this test!
+            logger.error("You have already sent this person an invite.")
+            return redirect('/client/test/'+str(test.id)+'/')
+
+    user = None
+    if user_exists_by_email(email):
+        user = Account.objects.get(email=email)
+        if not user.type == 'CANDIDATE':
+
+            # TODO 
+            # Message: This user is not a candidate!
+            logger.error("This user is not a candidate!")
+            return redirect('/client/test/'+str(test.id)+'/')
+
+        authorized_users = test.authorizations.all().values_list('user', flat=True)
+        if user.id in authorized_users:
+            # TODO
+            # Message: This user already has permission to access this test!
+            logger.error("This user already has permission to access this test!")
+            return redirect('/client/test/'+str(test.id)+'/')
+        email = ''
+
+    test_auth = TestAuth.objects.create(test=test, email=email, user=user)
+    test.authorizations.add(test_auth)
+
+    return redirect('/client/test/'+str(test.id)+'/')
+
 
 ### Client Login View ###
 

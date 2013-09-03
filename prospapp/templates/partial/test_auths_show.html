@@ -1,0 +1,16 @@
+<div class="auths">
+    {% if count > 0 %}
+        <h3>Authorized Users:</h3>
+    {% endif %}
+    <ul>
+        {% for auth in auths %}
+            {% if auth.id > 0 %}
+                <li><a href="#">{{ auth.email }}</a></li>
+            {% else %}
+                <li>{{ auth.email }} - {{ auth.key }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    
+
+</div>

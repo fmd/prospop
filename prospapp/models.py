@@ -63,6 +63,8 @@ class BaseImage(BaseModel):
 ### Database representation of a Clonable Docker 'Test' ###
 class TestImage(BaseImage):
     owner            = models.ForeignKey(Account, related_name='images', parent_link=True)
+
+    #Private TestImages do not exist yet.
     is_public        = models.BooleanField(default=True)
     instructions     = models.TextField(default='')
 
@@ -90,7 +92,7 @@ class TestInstance(BaseModel):
 ### A Permissions object between Tests and Accounts ###
 class TestAuth(BaseModel):
     test  = models.ForeignKey(Test, related_name='authorizations')
-    user  = models.ForeignKey(Account, related_name='authorized_tests', blank=True, null=True)
+    user  = models.ForeignKey(Account, related_name='authorizations', blank=True, null=True)
     email = models.CharField(max_length=255, blank=True)
     key   = models.CharField(max_length=32,  blank=True)
 

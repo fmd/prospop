@@ -35,10 +35,11 @@ urlpatterns += patterns('prospapp.views.client',
     url(r'^client/signup/$',    'signup'),
 
     #Client - Tests
-    url(r'^client/tests/$',           'tests'),
-    url(r'^client/test/(\d{1,15})/$', 'test'),
-    url(r'^client/test/new/$',        'new_test'),
-    url(r'^client/do/test/new/$',     'do_new_test'),
+    url(r'^client/tests/$',            'tests'),
+    url(r'^client/test/(\d{1,15})/$',  'test'),
+    url(r'^client/test/new/$',         'new_test'),
+    url(r'^client/do/test/new/$',      'do_new_test'),
+    url(r'^client/do/test/auth/new/$', 'do_new_test_auth')
 
 )
 

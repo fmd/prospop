@@ -17,3 +17,31 @@
 [26/Jul/2013 09:50:31] DEBUG [prospapp.views:225] Could not log in as candidate: Authentication failed.
 [26/Jul/2013 09:50:38] DEBUG [prospapp.views:225] Could not log in as candidate: Authentication failed.
 [26/Jul/2013 09:55:28] DEBUG [prospapp.views:225] Could not log in as candidate: Authentication failed.
+[03/Sep/2013 13:12:52] ERROR [prospapp.views.client:140] WHATS UP
+[03/Sep/2013 13:13:44] ERROR [prospapp.views.client:140] WHATS UP
+[03/Sep/2013 13:13:45] ERROR [prospapp.views.client:140] WHATS UP
+[03/Sep/2013 13:13:46] ERROR [prospapp.views.client:140] WHATS UP
+[03/Sep/2013 13:13:52] ERROR [prospapp.views.client:140] WHATS UP
+[03/Sep/2013 13:13:55] ERROR [prospapp.views.client:140] WHATS UP
+[03/Sep/2013 13:15:20] ERROR [prospapp.views.client:140] WHATS UP
+[03/Sep/2013 13:15:47] ERROR [prospapp.views.client:140] WHATS UP
+[03/Sep/2013 13:16:05] ERROR [prospapp.views.client:140] WHATS UP
+[03/Sep/2013 13:18:04] ERROR [prospapp.views.client:156] Form was not valid.
+[03/Sep/2013 13:18:10] ERROR [prospapp.views.client:196] This user is not a candidate!
+[03/Sep/2013 13:20:26] ERROR [prospapp.views.client:156] Form was not valid.
+[03/Sep/2013 13:23:43] ERROR [prospapp.views.client:191] You have already sent this person an invite.
+[03/Sep/2013 13:24:14] ERROR [prospapp.views.client:201] This user is not a candidate!
+[03/Sep/2013 13:24:31] ERROR [prospapp.views.client:201] This user is not a candidate!
+[03/Sep/2013 13:37:46] ERROR [prospapp.views.client:205] 0
+[03/Sep/2013 13:38:09] ERROR [prospapp.views.client:205] [15, 14, 13, 12, 11, 10, 9, 8]
+[03/Sep/2013 13:38:09] ERROR [prospapp.views.client:210] This user already has permission to access this test!
+[03/Sep/2013 13:41:15] DEBUG [prospapp.views.client:204] <django.db.models.fields.related.RelatedManager object at 0x7f679c112e10>
+[03/Sep/2013 13:42:20] DEBUG [prospapp.views.client:204] [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+[03/Sep/2013 13:42:57] ERROR [prospapp.views.client:156] Form was not valid.
+[03/Sep/2013 13:46:28] DEBUG [prospapp.views.client:204] [u'', u'', u'', u'', u'', u'', u'', u'', u'', u'', u'', u'']
+[03/Sep/2013 13:48:17] ERROR [prospapp.views.client:205] []
+[03/Sep/2013 13:51:06] ERROR [prospapp.views.client:205] []
+[03/Sep/2013 13:51:06] ERROR [prospapp.views.client:208] [None, None, None, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+[03/Sep/2013 13:51:56] ERROR [prospapp.views.client:156] Form was not valid.
+[03/Sep/2013 13:51:58] ERROR [prospapp.views.client:208] This user already has permission to access this test!
+[03/Sep/2013 13:52:05] ERROR [prospapp.views.client:191] You have already sent this person an invite.

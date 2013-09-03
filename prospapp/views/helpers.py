@@ -38,9 +38,6 @@ def do_signup(request):
     post = request.POST
     form = SignupForm(post)
 
-    # TODO
-    # Validate candidate signup
-
     if post['password1'] != post['password2']:
         return redirect(onfail)
 
@@ -48,6 +45,10 @@ def do_signup(request):
         user = create_user(username=post['email'], email=post['email'], password=post['password1'], type="CLIENT")
         return redirect(onsuccess)
     else:
+
+        # TODO
+        # Error message: User already exists with this email address.
+
         return redirect(onfail)
 
 def do_logout(request):
@@ -62,6 +63,12 @@ def create_user(username, email, password, type):
 
 def user_exists(username):
     user_count = Account.objects.filter(username=username).count()
+    if user_count == 0:
+        return False
+    return True
+
+def user_exists_by_email(email):
+    user_count = Account.objects.filter(email=email).count()
     if user_count == 0:
         return False
     return True
@@ -88,6 +95,12 @@ def authenticate_test(user, test):
     if test.is_public:
         return True
 
+    if test.owner == user:
+        return True
+
+    return False
+
+def authenticate_test_owner(user, test):
     if test.owner == user:
         return True
 
