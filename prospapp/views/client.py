@@ -127,12 +127,20 @@ def do_new_test(request):
 
         # TODO
         # Message: Reason it wasn't valid.
+        logger.error("Form is not valid.")
+        return redirect(on_fail)
 
-        return render(on_fail)
+    test_exists = Test.objects.filter(owner=request.user, label=form.cleaned_data['label'], image=form.cleaned_data['image']).exists()
+    if test_exists:
+
+        # TODO
+        # Message: You already have a test called [label].
+        logger.error('You already have a test called '+form.cleaned_data['label']+' using image '+form.cleaned_data['image'].label)
+        return redirect(on_fail)
 
     test = Test(label=form.cleaned_data['label'], owner=request.user, is_public=form.cleaned_data['public'], image=form.cleaned_data['image'])
     test.save()
-    return redirect('/client/test/'+test.id+'/')
+    return redirect('/client/test/'+str(test.id)+'/')
 
 ### Client New Test Auth Action ###
 
@@ -143,7 +151,7 @@ def do_new_test_auth(request):
 
         # TODO
         # Error message: You must be logged in to continue.
-        logger.error("You must be logged in to continue.")
+        logger.error('You must be logged in to continue.')
 
         return redirect('/client/login/')
 
@@ -153,7 +161,7 @@ def do_new_test_auth(request):
 
         # TODO
         # Message: Reason it isn't valid.
-        logger.error("Form was not valid.")
+        logger.error('Form was not valid.')
 
         if 'test' in post.keys():
             test_id = post['test']
@@ -170,7 +178,7 @@ def do_new_test_auth(request):
 
         # TODO
         # Message: No such test exists.
-        logger.error("No such test exists.")
+        logger.error('No such test exists.')
 
         return redirect('/client/tests/')
 
@@ -179,7 +187,7 @@ def do_new_test_auth(request):
 
         # TODO
         # Message: You are not authorized to edit this test.
-        logger.error("You are not authorized to edit this test.")
+        logger.error('You are not authorized to edit this test.')
 
         return redirect('/client/tests/')
 
@@ -188,7 +196,7 @@ def do_new_test_auth(request):
 
             # TODO
             # Message: This user already has permission to access this test!
-            logger.error("You have already sent this person an invite.")
+            logger.error('You have already sent this person an invite.')
             return redirect('/client/test/'+str(test.id)+'/')
 
     user = None
@@ -198,14 +206,14 @@ def do_new_test_auth(request):
 
             # TODO 
             # Message: This user is not a candidate!
-            logger.error("This user is not a candidate!")
+            logger.error('This user is not a candidate!')
             return redirect('/client/test/'+str(test.id)+'/')
 
         authorized_users = test.authorizations.all().values_list('user', flat=True)
         if user.id in authorized_users:
             # TODO
             # Message: This user already has permission to access this test!
-            logger.error("This user already has permission to access this test!")
+            logger.error('This user already has permission to access this test!')
             return redirect('/client/test/'+str(test.id)+'/')
         email = ''
 

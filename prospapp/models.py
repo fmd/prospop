@@ -68,6 +68,9 @@ class TestImage(BaseImage):
     is_public        = models.BooleanField(default=True)
     instructions     = models.TextField(default='')
 
+    def __unicode__(self):
+        return self.name + ':' + self.tag
+
 ### Database representation of an open Prospop 'Test'. ###
 class Test(BaseModel):
     label        = models.CharField(max_length=31)

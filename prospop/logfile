@@ -45,3 +45,12 @@
 [03/Sep/2013 13:51:56] ERROR [prospapp.views.client:156] Form was not valid.
 [03/Sep/2013 13:51:58] ERROR [prospapp.views.client:208] This user already has permission to access this test!
 [03/Sep/2013 13:52:05] ERROR [prospapp.views.client:191] You have already sent this person an invite.
+[03/Sep/2013 14:24:03] ERROR [prospapp.views.client:130] Form is not valid.
+[03/Sep/2013 14:24:22] ERROR [prospapp.views.client:138] You already have a test called s.
+[03/Sep/2013 14:24:51] ERROR [prospapp.views.client:130] Form is not valid.
+[03/Sep/2013 14:28:13] ERROR [prospapp.views.client:138] You already have a test called s using image leibniz
+[03/Sep/2013 14:28:16] ERROR [prospapp.views.client:130] Form is not valid.
+[03/Sep/2013 14:28:18] ERROR [prospapp.views.client:130] Form is not valid.
+[03/Sep/2013 14:28:25] ERROR [prospapp.views.client:138] You already have a test called s using image leibniz
+[03/Sep/2013 14:28:58] ERROR [prospapp.views.client:138] You already have a test called s using image Leibniz Approximation of Pi
+[03/Sep/2013 14:32:03] ERROR [prospapp.views.client:216] This user already has permission to access this test!
