@@ -100,3 +100,33 @@
 [03/Sep/2013 15:19:30] ERROR [prospapp.views.client:191] Form was not valid.
 [03/Sep/2013 15:19:38] ERROR [prospapp.views.client:191] Form was not valid.
 [03/Sep/2013 15:19:39] ERROR [prospapp.views.client:191] Form was not valid.
+[03/Sep/2013 16:18:57] ERROR [prospapp.views.helpers:39] Bad username/password
+[03/Sep/2013 16:20:27] ERROR [prospapp.views.helpers:26] You must be logged in to continue.
+[03/Sep/2013 16:21:22] ERROR [prospapp.views.helpers:97] CLIENT
+[03/Sep/2013 16:21:22] ERROR [prospapp.views.helpers:94] User has no type.
+[03/Sep/2013 16:21:22] ERROR [prospapp.views.helpers:26] You must be logged in to continue.
+[03/Sep/2013 16:21:22] ERROR [prospapp.views.helpers:94] User has no type.
+[03/Sep/2013 16:22:16] ERROR [prospapp.views.helpers:94] User has no type.
+[03/Sep/2013 16:22:16] ERROR [prospapp.views.helpers:26] You must be logged in to continue.
+[03/Sep/2013 16:22:16] ERROR [prospapp.views.helpers:94] User has no type.
+[03/Sep/2013 16:27:24] ERROR [prospapp.views.helpers:94] User has no type.
+[03/Sep/2013 16:27:29] ERROR [prospapp.views.helpers:94] User has no type.
+[03/Sep/2013 16:27:29] ERROR [prospapp.views.helpers:39] Bad username/password
+[03/Sep/2013 16:27:29] ERROR [prospapp.views.helpers:94] User has no type.
+[03/Sep/2013 16:27:34] ERROR [prospapp.views.helpers:94] User has no type.
+[03/Sep/2013 16:27:34] ERROR [prospapp.views.helpers:26] You must be logged in to continue.
+[03/Sep/2013 16:27:34] ERROR [prospapp.views.helpers:94] User has no type.
+[03/Sep/2013 16:28:52] ERROR [prospapp.views.helpers:94] User has no type.
+[03/Sep/2013 16:28:52] ERROR [prospapp.views.helpers:22] AnonymousUser
+[03/Sep/2013 16:28:52] ERROR [prospapp.views.helpers:27] You must be logged in to continue.
+[03/Sep/2013 16:28:52] ERROR [prospapp.views.helpers:94] User has no type.
+[03/Sep/2013 16:29:33] ERROR [prospapp.views.helpers:48] client@gmail.com
+[03/Sep/2013 16:29:33] ERROR [prospapp.views.helpers:53] client@gmail.com
+[03/Sep/2013 16:29:33] ERROR [prospapp.views.helpers:97] User has no type.
+[03/Sep/2013 16:29:33] ERROR [prospapp.views.helpers:26] You must be logged in to continue.
+[03/Sep/2013 16:29:33] ERROR [prospapp.views.helpers:97] User has no type.
+[03/Sep/2013 16:33:53] ERROR [prospapp.views.helpers:174] Form is not valid.
+[03/Sep/2013 16:33:57] ERROR [prospapp.views.helpers:186] You already have a test called asd using image Leibniz Approximation of Pi
+[03/Sep/2013 16:35:57] ERROR [prospapp.views.helpers:93] User has no type.
+[03/Sep/2013 17:05:25] ERROR [prospapp.views.helpers:222] Form was not valid.
+[03/Sep/2013 17:05:27] ERROR [prospapp.views.helpers:222] Form was not valid.

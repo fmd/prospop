@@ -25,22 +25,69 @@ TESTINSTANCE_STATUSES = (
     ('CANCELLED', 'Cancelled'),  #User has cancelled the Test.
 )
 
+################################
+##### ----- Managers ----- #####
+################################
+
+class AccountManager(models.Manager):
+    def all(self):
+        return self.get_query_set().filter(is_active=True)
+
+    def get(self, *args, **kwargs):
+        kwargs['is_active'] = True
+        try:
+            ret = self.get_query_set().get(*args, **kwargs)
+        except self.model.DoesNotExist:
+            ret = False
+        return ret
+
+    def all_with_deleted(self):
+        return super(AccountManager, self).all()
+
+    def get_with_deleted(self, *args, **kwargs):
+        return super(AccountManager, self).get(*args, **kwargs)
+
+class BaseManager(models.Manager):
+    def all(self):
+        return self.get_query_set().filter(deleted_at=None)
+
+    def get(self, *args, **kwargs):
+        kwargs['deleted_at'] = None
+        try:
+            ret = self.get_query_set().get(*args, **kwargs)
+        except self.model.DoesNotExist:
+            ret = False 
+        return ret
+
+    def all_with_deleted(self):
+        return super(BaseManager, self).all()
+
+    def get_with_deleted(self, *args, **kwargs):
+        return super(BaseManager, self).get(*args, **kwargs)
+
 ##############################
 ##### ----- Models ----- #####
 ##############################
 
 ### User class extension ###
 class Account(AbstractUser):
+    objects = AccountManager()
     type = models.CharField(choices=ACCOUNT_TYPES, max_length=31, default='CANDIDATE')
 
 ### Base model class with CRUD data. ###
 class BaseModel(models.Model):
+    objects    = BaseManager()
     created_at = models.DateTimeField(blank=True)
     updated_at = models.DateTimeField(blank=True)
     deleted_at = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         abstract = True
+
+    def fe_delete(self):
+        time = datetime.datetime.utcnow().replace(tzinfo=utc)
+        self.deleted_at = time
+        self.save()
 
     def save(self, *args, **kwargs):
         time = datetime.datetime.utcnow().replace(tzinfo=utc)

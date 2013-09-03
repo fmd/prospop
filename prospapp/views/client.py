@@ -23,7 +23,7 @@ def home(request):
 
         # TODO
         # Error message: You must be logged in to continue.
-
+        logger.error("You must be logged in to continue.")
         return redirect('/client/login/')
 
     context = {
@@ -119,6 +119,35 @@ def new_test(request):
         'form'          : form,
     }
     return render(request, 'client/new_test.html', context)
+
+
+### Client Delete Test Action ###
+def do_delete_test(request, id):
+    auth = authenticate_type(request.user, 'CLIENT')
+    if not auth:
+
+        # TODO
+        # Error message: You must be logged in to continue.
+        return redirect('/client/login/')   
+
+    test = Test.objects.get(id=id)
+    if not test:
+
+        # TODO
+        # Message: No such test exists.
+        logger.error('No such test exists.')
+ 
+    can_edit_test = authenticate_test_owner(request.user, test)
+    if not can_edit_test:
+
+        # TODO
+        # Message: You are not authorized to edit this test.
+        logger.error('You are not authorized to edit this test.')
+
+        return redirect('/client/tests/')
+
+    test.fe_delete()
+    return redirect('/client/tests/')
 
 ### Client New Test Action ###
 

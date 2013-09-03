@@ -2,9 +2,12 @@
 ##### ----- Helpers ----- #####
 ###############################
 
+#Python Imports
+import logging
+logger = logging.getLogger(__name__)
+
 # Django Imports 
 from django.contrib.auth import logout, login, authenticate
-
 from django.shortcuts import redirect
 
 # Our Imports
@@ -16,8 +19,8 @@ def do_login(request):
     post = request.POST
     form = LoginForm(post)
     user_type = post['user_type']
-    on_success = '/'+user_type+'/login/'
-    on_fail = '/'+user_type+'/'
+    on_success = '/'+user_type+'/'
+    on_fail = '/'+user_type+'/login/'
 
     user = authenticate(username=post['email'], password=post['password'])
     auth = authenticate_type(user,user_type.upper())
@@ -33,17 +36,17 @@ def do_login(request):
 
         # TODO
         # Error message: Invalid username or password.
-
+        logger.error("Bad username/password")
         return redirect(on_fail)
 
     if not user:
+        logger.error("No user.")
         return redirect(on_fail)
     
     login(request, user)
 
     # We no longer need this session data because the request succeeded.
     request.session.pop('login_data')
-    request.session.modified = False
     return redirect(on_success)
 
 def do_signup(request):
@@ -87,6 +90,7 @@ def user_exists_by_email(email):
 
 def authenticate_type(user, type):
     if not hasattr(user, 'type'):
+        logger.error("User has no type.")
         return False
 
     if (user.is_authenticated() and user.type == type):
