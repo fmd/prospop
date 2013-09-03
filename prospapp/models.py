@@ -31,7 +31,7 @@ TESTINSTANCE_STATUSES = (
 
 ### User class extension ###
 class Account(AbstractUser):
-    type = models.CharField(choices=ACCOUNT_TYPES, max_length=31, default="CANDIDATE")
+    type = models.CharField(choices=ACCOUNT_TYPES, max_length=31, default='CANDIDATE')
 
 ### Base model class with CRUD data. ###
 class BaseModel(models.Model):
@@ -55,24 +55,24 @@ class BaseImage(BaseModel):
     name       = models.CharField(max_length=31)                                                           # The name of the actual Docker image.
     tag        = models.CharField(max_length=31, blank=True)                                               # The tag of the actual Docker image.
     identifier = models.CharField(max_length=127, blank=True)                                              # The ID of the actual Docker image.
-    parent     = models.ForeignKey("self", blank=True, null=True, related_name="images", parent_link=True) # (Front-facing) This image's parent (not always Dockerfile "from")
+    parent     = models.ForeignKey('self', blank=True, null=True, related_name='images', parent_link=True) # (Front-facing) This image's parent (not always Dockerfile 'from')
     
     def __unicode__(self):
-        return self.label + " (" + self.name + ":" + self.tag + ")"
+        return self.label + ' (' + self.name + ':' + self.tag + ')'
 
-### Database representation of a Clonable Docker "Test" ###
+### Database representation of a Clonable Docker 'Test' ###
 class TestImage(BaseImage):
-    owner            = models.ForeignKey(Account, related_name="images", parent_link=True)
+    owner            = models.ForeignKey(Account, related_name='images', parent_link=True)
     is_public        = models.BooleanField(default=True)
-    instructions     = models.TextField(default="")
+    instructions     = models.TextField(default='')
 
-### Database representation of an open Prospop "Test". ###
+### Database representation of an open Prospop 'Test'. ###
 class Test(BaseModel):
     label        = models.CharField(max_length=31)
-    image        = models.ForeignKey(TestImage, related_name="tests", parent_link=True) 
+    image        = models.ForeignKey(TestImage, related_name='tests', parent_link=True) 
     is_public    = models.BooleanField(default=True)
-    owner        = models.ForeignKey(Account, related_name="tests", parent_link=True)
-    instructions = models.TextField(default="")
+    owner        = models.ForeignKey(Account, related_name='tests', parent_link=True)
+    instructions = models.TextField(default='')
 
 def clone_instructions(sender, instance, created, **kwargs):  
     if created:
@@ -83,14 +83,14 @@ post_save.connect(clone_instructions, sender=Test)
 
 ### Database representation of a Docker container running a Test ###
 class TestInstance(BaseModel):
-    test   = models.ForeignKey(Test, related_name="instances", parent_link=True)
-    owner  = models.ForeignKey(Account, related_name="instances", parent_link=True)
-    status = models.CharField(choices=TESTINSTANCE_STATUSES,max_length=31,default="PENDING") 
+    test   = models.ForeignKey(Test, related_name='instances', parent_link=True)
+    owner  = models.ForeignKey(Account, related_name='instances', parent_link=True)
+    status = models.CharField(choices=TESTINSTANCE_STATUSES,max_length=31,default='PENDING') 
 
 ### A Permissions object between Tests and Accounts ###
 class TestAuth(BaseModel):
-    test  = models.ForeignKey(Test, related_name="authorizations")
-    user  = models.ForeignKey(Account, related_name="authorized_tests", blank=True, null=True)
+    test  = models.ForeignKey(Test, related_name='authorizations')
+    user  = models.ForeignKey(Account, related_name='authorized_tests', blank=True, null=True)
     email = models.CharField(max_length=255, blank=True)
     key   = models.CharField(max_length=32,  blank=True)
 

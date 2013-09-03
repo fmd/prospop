@@ -1,21 +1,10 @@
 {% extends "client/base.html" %}
+{% load test %}
 
 {% block title %}New Test{% endblock %}
 
 {% block content %}
 <div class="content">
-	<form method="POST" action="{% url "prospapp.views.client.create_test" %}"> {% csrf_token %}
-		<label for="label">Name:</label>
-		<input id="label" name="label" type="text" />
-		<label for="image">Image:</label>
-		<select id="image" name="image">
-		{% for image in images %}
-			<option value="{{ image.id }}">{{ image.label }}</option>
-		{% endfor %}
-		</select>
-		<label for="public">Public?</label>
-		<input type="checkbox" name="public" value="public" />
-		<button type="submit">Make</button>
-	</form>	
+	{% edit_test form %}
 </div>
 {% endblock %}

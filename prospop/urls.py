@@ -23,9 +23,8 @@ urlpatterns = patterns('prospapp.views.frontend',
     url(r'^pricing/$', 'pricing'),
 
     #Frontend - Functional
-    url(r'^tests/$',                  'tests'),
-    url(r'^test/(\d{1,15})/$',        'test'),
-    url(r'^test/(\d{1,15})/create/$', 'create_test'),
+    url(r'^tests/$',               'tests'),
+    url(r'^test/(\d{1,15})/$',     'test'),
 )
 
 urlpatterns += patterns('prospapp.views.client',
@@ -39,7 +38,7 @@ urlpatterns += patterns('prospapp.views.client',
     url(r'^client/tests/$',           'tests'),
     url(r'^client/test/(\d{1,15})/$', 'test'),
     url(r'^client/test/new/$',        'new_test'),
-    url(r'^client/test/create/$',     'create_test'),
+    url(r'^client/do/test/new/$',     'do_new_test'),
 
 )
 
@@ -49,6 +48,9 @@ urlpatterns += patterns('prospapp.views.candidate',
     url(r'^candidate/$',           'home'),
     url(r'^candidate/login/$',     'login'),
     url(r'^candidate/signup/$',    'signup'),
+
+    #Candidate - Tests
+    url(r'^candidate/test/(\d{1,15})/new/$', 'new_instance'),
 
 )
 
@@ -66,7 +68,6 @@ urlpatterns += patterns('',
     #Admin
     url(r'^admin/', include(admin.site.urls)),
 )
-
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns += staticfiles_urlpatterns()

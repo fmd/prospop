@@ -56,37 +56,3 @@ def test(request, id):
         'test' : Test.objects.get(id=id)
     }
     return render(request, 'frontend/test.html',context)
-
-### New Test Instance ###
-
-def create_test(request, id):
-
-    if not request.user.is_authenticated():
-
-        # TODO
-        # Error message: You must be logged in to start this test.
-        # Redirect the candidate back to the test page after login via session variable.
-
-        return redirect("/candidate/login/")
-
-    if not request.user.type == "CANDIDATE":
-
-        # TODO
-        # Error message: Clients cannot attempt tests.
-
-        return redirect("/test/"+id+"/")
-
-    test = Test.objects.get(id=id)
-    user_has_test = TestInstance.objects.filter(test=test,owner=request.user).exists()
-
-    if not user_has_test:
-        instance = TestInstance(test=test, owner=request.user)
-        instance.save()
-    else:
-
-        # TODO
-        # Redirect to the currently open test
-
-        pass
-    
-    return redirect("/test/"+id+"/")

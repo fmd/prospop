@@ -6,6 +6,6 @@
 {% block content %}
 <div class="content">
     {% show_test test %}
-    <a href="{% url "prospapp.views.frontend.create_test" test.id %}">Start this Test!</a>
+    <a href="{% url "prospapp.views.candidate.new_instance" test.id %}">Start this Test!</a>
 </div>
 {% endblock %}

@@ -1,0 +1,4 @@
+<form method="POST" action="{% url "prospapp.views.client.do_new_test" %}"> {% csrf_token %}
+    {{ form }}
+    <button type="submit">Make</button>
+</form> 

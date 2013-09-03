@@ -1,4 +1,4 @@
-######################################
+ ######################################
 ##### ----- Client Section ----- #####
 ######################################
 
@@ -14,13 +14,13 @@ from helpers import *
 ### Client Account Page ###
 
 def home(request):
-    auth = authenticate_type(request.user,"CLIENT")
+    auth = authenticate_type(request.user,'CLIENT')
     if not auth:
 
         # TODO
         # Error message: You must be logged in to continue.
 
-        return redirect("/client/login/")
+        return redirect('/client/login/')
 
     context = {
         'authenticated' : auth,
@@ -31,13 +31,13 @@ def home(request):
 ### Client Test Page ###
 
 def test(request, id):
-    auth = authenticate_type(request.user,"CLIENT")
+    auth = authenticate_type(request.user,'CLIENT')
     if not auth:
 
         # TODO
         # Error message: You must be logged in to continue.
 
-        return redirect("/client/login/")
+        return redirect('/client/login/')
 
     test = Test.objects.get(id=id)
     auth = authenticate_test(request.user, test)
@@ -46,14 +46,14 @@ def test(request, id):
         # TODO
         # Error message: No such test.
 
-        return redirect("client/tests/")
+        return redirect('client/tests/')
 
     if not auth:
 
         # TODO
         # Error message: You do not own this test.
 
-        return redirect("/client/tests/")
+        return redirect('/client/tests/')
 
     context = {
         'authenticated' : auth,
@@ -64,17 +64,17 @@ def test(request, id):
 ### Client Tests Page ###
 
 def tests(request):
-    auth = authenticate_type(request.user,"CLIENT")
+    auth = authenticate_type(request.user,'CLIENT')
     if not auth:
 
         # TODO
         # Error message: You must be logged in to continue.
 
-        return redirect("/client/login/")
+        return redirect('/client/login/')
 
     images = request.user.tests.all()
     for image in images:
-        image.url = "hello"
+        image.url = 'hello'
     context = {
         'authenticated' : auth,
         'images'        : images,
@@ -84,24 +84,25 @@ def tests(request):
 ### Client New Test Page ###
 
 def new_test(request):
-    auth = authenticate_type(request.user,"CLIENT")
+    auth = authenticate_type(request.user,'CLIENT')
     if not auth:
 
         # TODO
         # Error message: You must be logged in to continue.
 
-        return redirect("/client/login/")
+        return redirect('/client/login/')
 
-    images = TestImage.objects.all()
+    form = NewTestForm(initial = {'public': True})
+
     context = {
         'authenticated' : auth,
-        'images'        : images,
+        'form'          : form,
     }
     return render(request, 'client/new_test.html', context)
 
 ### Client New Test Action ###
 
-def create_test(request, onsuccess='/client/tests/', onfail='/test/new/'):
+def do_new_test(request, onsuccess='/client/tests/', onfail='/test/new/'):
     post = request.POST
 
     label = post['label']
@@ -110,7 +111,6 @@ def create_test(request, onsuccess='/client/tests/', onfail='/test/new/'):
     is_public = False
     if 'public' in post:
         is_public = True
-
 
     owner = request.user
     
@@ -128,7 +128,7 @@ def login(request):
     if response:
         return response
     
-    auth = authenticate_type(request.user,"CLIENT")
+    auth = authenticate_type(request.user,'CLIENT')
     form = LoginForm(initial = {'user_type': 'client'})
 
     context = {
@@ -141,7 +141,7 @@ def login(request):
 ### Client Signup View ###
 
 def signup(request):
-    auth = authenticate_type(request.user,"CLIENT")
+    auth = authenticate_type(request.user,'CLIENT')
     form = SignupForm(initial = {'user_type': 'client'})
 
     context = {

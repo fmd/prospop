@@ -7,8 +7,8 @@ def show_test(test):
     return {'test': test}
 
 @register.inclusion_tag('partial/forms/test_edit.html')
-def edit_test(test):
-    return {'test': test}
+def edit_test(form):
+    return {'form': form}
 
 @register.inclusion_tag('partial/forms/test_auth_edit.html')
 def edit_test_auth(test_auth):
